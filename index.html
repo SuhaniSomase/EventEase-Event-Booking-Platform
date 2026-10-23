@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover and book amazing events with EventEase.">
+    <title>EventEase | Discover Your Next Experience</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo"><span class="logo-icon">E</span> EventEase</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#events">Explore Events</a>
+            <a href="#bookings">My Bookings <span id="bookingCount" class="count-badge">0</span></a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☾</button>
+            <a href="#events" class="btn btn-primary nav-cta">Explore Now ↗</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="eyebrow"><span class="live-dot"></span> YOUR NEXT EXPERIENCE STARTS HERE</span>
+                <h1>Make plans.<br>Make <span class="gradient-text">memories.</span></h1>
+                <p>Discover unforgettable concerts, creative workshops and exciting events happening around you.</p>
+
+                <form class="hero-search" id="searchForm">
+                    <span class="search-icon">⌕</span>
+                    <input type="search" id="searchInput" placeholder="Search events, artists, venues..." aria-label="Search events">
+                    <button type="submit" class="btn btn-primary">Find Events</button>
+                </form>
+
+                <div class="hero-stats">
+                    <div><strong>12+</strong><span>Curated Events</span></div>
+                    <div><strong>4</strong><span>Event Categories</span></div>
+                    <div><strong>100%</strong><span>Easy Booking</span></div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-image"></div>
+                <div class="floating-card floating-top">
+                    <span class="floating-icon">✦</span>
+                    <div><strong>Find your vibe</strong><small>Experiences worth sharing</small></div>
+                </div>
+                <div class="floating-card floating-bottom">
+                    <span class="avatar-stack">● ● ●</span>
+                    <div><strong>Make it memorable</strong><small>Your next story awaits</small></div>
+                </div>
+                <div class="hero-orb"></div>
+            </div>
+        </section>
+
+        <section class="events-section section" id="events">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">FIND YOUR NEXT ADVENTURE</span>
+                    <h2>Explore <span class="gradient-text">events.</span></h2>
+                    <p>From live music to new skills, there's something for everyone.</p>
+                </div>
+                <span class="event-total" id="eventTotal">12 events to discover</span>
+            </div>
+
+            <div class="event-toolbar">
+                <div class="category-filters" id="categoryFilters">
+                    <button class="filter-btn active" data-category="All">All Events</button>
+                    <button class="filter-btn" data-category="Music">🎵 Music</button>
+                    <button class="filter-btn" data-category="Technology">💻 Technology</button>
+                    <button class="filter-btn" data-category="Workshop">🎨 Workshops</button>
+                    <button class="filter-btn" data-category="Lifestyle">✨ Lifestyle</button>
+                </div>
+                <select id="sortSelect" aria-label="Sort events">
+                    <option value="featured">Featured first</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="date">Date: Earliest first</option>
+                </select>
+            </div>
+
+            <div class="events-grid" id="eventsGrid"></div>
+            <div class="empty-state hidden" id="emptyState">
+                <div class="empty-icon">⌕</div>
+                <h3>No events found</h3>
+                <p>Try another search or category.</p>
+                <button class="btn btn-primary" id="resetFilters">Show all events</button>
+            </div>
+        </section>
+
+        <section class="promo-section section">
+            <div class="promo-content">
+                <span class="eyebrow">GOOD TIMES ARE CLOSER THAN YOU THINK</span>
+                <h2>Say yes to<br>something <span class="gradient-text">new.</span></h2>
+                <p>Your next favourite memory could be just one booking away.</p>
+                <a href="#events" class="btn btn-light">Discover Events ↗</a>
+            </div>
+            <div class="promo-decoration">✳</div>
+        </section>
+
+        <section class="bookings-section section" id="bookings">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">YOUR PLANS, ALL IN ONE PLACE</span>
+                    <h2>My <span class="gradient-text">bookings.</span></h2>
+                    <p>Keep track of the experiences you've booked.</p>
+                </div>
+                <span class="event-total" id="bookingSummary">0 bookings</span>
+            </div>
+
+            <div class="bookings-list" id="bookingsList"></div>
+            <div class="empty-bookings" id="emptyBookings">
+                <div class="empty-icon">♧</div>
+                <h3>Your next adventure awaits</h3>
+                <p>You haven't booked an event yet. Find something you love!</p>
+                <a href="#events" class="btn btn-primary">Explore Events ↗</a>
+            </div>
+        </section>
+
+        <section class="newsletter section">
+            <div>
+                <span class="eyebrow">DON'T MISS THE MOMENT</span>
+                <h2>Stay in the <span class="gradient-text">loop.</span></h2>
+                <p>Get inspired for your next great experience.</p>
+            </div>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button class="btn btn-primary" type="submit">Count Me In ↗</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#home" class="logo"><span class="logo-icon">E</span> EventEase</a>
+        <p>Discover moments. Create memories.</p>
+        <span>© <span id="currentYear"></span> EventEase. Built with passion.</span>
+    </footer>
+
+    <div class="modal-backdrop hidden" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="booking-modal">
+            <button type="button" class="modal-close" id="closeModal" aria-label="Close booking form">×</button>
+            <span class="eyebrow">SAVE YOUR SPOT</span>
+            <h2 id="modalTitle">Book your <span class="gradient-text">experience.</span></h2>
+            <div class="selected-event" id="selectedEvent"></div>
+
+            <form id="bookingForm">
+                <input type="hidden" id="eventId">
+                <label for="customerName">Full Name</label>
+                <input type="text" id="customerName" placeholder="Enter your full name" minlength="2" required>
+
+                <label for="customerEmail">Email Address</label>
+                <input type="email" id="customerEmail" placeholder="you@example.com" required>
+
+                <label for="ticketQuantity">Number of Tickets</label>
+                <select id="ticketQuantity">
+                    <option value="1">1 Ticket</option>
+                    <option value="2">2 Tickets</option>
+                    <option value="3">3 Tickets</option>
+                    <option value="4">4 Tickets</option>
+                    <option value="5">5 Tickets</option>
+                </select>
+
+                <div class="price-summary">
+                    <span>Total Amount</span>
+                    <strong id="bookingTotal">₹0</strong>
+                </div>
+                <p class="demo-note">Demo project: no real payment will be collected.</p>
+                <button type="submit" class="btn btn-primary btn-full">Confirm Booking ↗</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
